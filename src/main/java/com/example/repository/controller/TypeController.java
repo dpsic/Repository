@@ -8,12 +8,13 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@RequestMapping("/api")
 public class TypeController {
     @Autowired
     TypeService typeService;
 
     @PostMapping(path = "/types")
-    public Type saveType(Type type){
+    public Type saveType(@RequestBody Type type){
         return typeService.ajouter(type);
     }
 

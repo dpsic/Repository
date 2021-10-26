@@ -10,12 +10,13 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@RequestMapping("/api")
 public class SiteController {
     @Autowired
     SiteService siteService;
 
-    @PostMapping(path = "/sites")
-    public Site saveSite(Site site){
+    @PostMapping("/sites")
+    public Site saveSite(@RequestBody Site site){
         return siteService.ajouter(site);
     }
 

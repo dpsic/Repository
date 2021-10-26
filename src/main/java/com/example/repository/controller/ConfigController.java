@@ -25,14 +25,13 @@ public class ConfigController {
     private String path;
     @Autowired
     MapVAlidationErrorService mapVAlidationErrorService;
-
-    @PostMapping("")
-    public ResponseEntity<?> createSurvey(@RequestPart(required = true) Config co,
+    @PostMapping(path="configs")
+    public ResponseEntity<?> create(@RequestPart(required = true) Config co,
                                           @RequestPart(value = "file", required = false) final MultipartFile file) {
 
         if (!file.isEmpty()) {
             if (!file.getContentType().equals("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")) {
-               
+
                 throw new LibbeleException("Erreur Fatale");
             }
             co.setFileLink(file.getOriginalFilename());
@@ -50,10 +49,7 @@ public class ConfigController {
 
     }
 
-    @PostMapping(path = "/configs")
-    public Config saveConfig(Config config){
-        return configService.ajouter(config);
-    }
+
 
     @GetMapping(path = "/configs/{id}")
     public Config getConfig(@PathVariable(name = "id") Long id){

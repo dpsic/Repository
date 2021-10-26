@@ -17,7 +17,6 @@ import java.util.List;
 @NoArgsConstructor
 @Data
 public class Config {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long value;
@@ -39,8 +38,7 @@ public class Config {
     @JsonFormat(pattern = "yyyy-MM-dd")
     @Column(updatable = true)
     private Date updateDate;
-
-
+    private String title;
     @PrePersist
     protected void Creat() {
         this.createDate= new Date();
