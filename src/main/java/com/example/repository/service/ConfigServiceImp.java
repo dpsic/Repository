@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 @Service
 
-public class ConfigServiceImp implements ConfigService{
+public class                                                                                    ConfigServiceImp implements ConfigService{
     @Autowired
     ConfigRepo configRepo;
     @Override

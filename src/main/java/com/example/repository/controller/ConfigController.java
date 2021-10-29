@@ -29,18 +29,12 @@ public class ConfigController {
     public ResponseEntity<?> create(@RequestPart(required = true) Config co,
                                           @RequestPart(value = "file", required = false) final MultipartFile file) {
 
-        if (!file.isEmpty()) {
-            if (!file.getContentType().equals("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")) {
 
-                throw new LibbeleException("Erreur Fatale");
-            }
-            co.setFileLink(file.getOriginalFilename());
-        }
-
+        co.setFileLink(file.getOriginalFilename());
         Config config = configService.ajouter(co);
         if (!file.isEmpty()) {
             try {
-                Files.write(Paths.get(path + "/" + config.getValue() + "_" + config.getFileLink()), file.getBytes());
+                Files.write(Paths.get(path + "\\" + config.getValue() + "_" + config.getFileLink()), file.getBytes());
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
